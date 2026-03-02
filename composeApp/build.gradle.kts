@@ -39,6 +39,8 @@ kotlin {
 
             implementation(libs.ktor.client.android)
             implementation(libs.android.driver)
+            implementation(libs.koin.androidx.compose)
+            implementation(libs.androidx.lifecycle.viewmodelCompose)
         }
         commonMain.dependencies {
             implementation(libs.compose.runtime)
