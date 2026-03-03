@@ -1,5 +1,0 @@
-package com.example.pleasework
-
-import androidx.compose.ui.window.ComposeUIViewController
-
-fun MainViewController() = ComposeUIViewController { AApp() }

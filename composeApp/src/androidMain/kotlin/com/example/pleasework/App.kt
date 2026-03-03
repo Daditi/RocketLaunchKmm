@@ -10,12 +10,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-//import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -25,14 +25,12 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.pleasework.entity.RocketLaunch
 import com.example.pleasework.theme.AppTheme
 import com.example.pleasework.theme.app_theme_successful
 import com.example.pleasework.theme.app_theme_unsuccessful
-import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,11 +44,11 @@ fun App() {
 //    val pullToRefreshState = rememberPullToRefreshState()
 
 //    if (pullToRefreshState.isRefreshing) {
-        LaunchedEffect(Unit) {
+    LaunchedEffect(Unit) {
 //            isRefreshing = true
-            viewModel.loadLaunches()
+        viewModel.loadLaunches()
 //            isRefreshing = false
-        }
+    }
 //    }
 
     AppTheme {
@@ -101,7 +99,7 @@ fun App() {
                                     Text(details)
                                 }
                             }
-//                            HorizontalDivider()
+                            Divider()
                         }
                     }
                 }

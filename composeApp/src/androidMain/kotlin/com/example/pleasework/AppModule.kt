@@ -8,11 +8,11 @@ import org.koin.core.module.dsl.viewModel
 
 val appModule = module {
     single<SpaceXApi> { SpaceXApi() }
+
     single<SpaceXSDK> {
         SpaceXSDK(
-            databaseDriverFactory = AndroidDatabaseDriverFactory(
-                androidContext()
-            ), api = get()
+            databaseDriverFactory = AndroidDatabaseDriverFactory(androidContext()),
+            api = get()
         )
     }
 
