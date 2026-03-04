@@ -1,4 +1,4 @@
-package com.example.pleasework.entity
+package com.example.pleasework.feature.spaceX.domain.model
 
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime

@@ -1,20 +1,35 @@
 package com.example.pleasework
 
 import com.example.pleasework.cache.AndroidDatabaseDriverFactory
-import com.example.pleasework.network.SpaceXApi
-import org.koin.android.ext.koin.androidContext
-import org.koin.dsl.module
+import com.example.pleasework.cache.AppDatabase
+import com.example.pleasework.core.cache.DatabaseDriverFactory
+import com.example.pleasework.feature.spaceX.data.dao.ILaunchLocalDataSource
+import com.example.pleasework.feature.spaceX.data.dao.LaunchLocalDataSource
+import com.example.pleasework.feature.spaceX.data.network.LaunchApi
+import com.example.pleasework.feature.spaceX.data.repository.ILaunchRepository
+import com.example.pleasework.feature.spaceX.domain.repository.LaunchRepository
+import com.example.pleasework.feature.spaceX.domain.usecase.GetLaunchesUseCase
+import com.example.pleasework.feature.spaceX.domain.usecase.IGetLaunchesUseCase
 import org.koin.core.module.dsl.viewModel
+import org.koin.dsl.module
 
 val appModule = module {
-    single<SpaceXApi> { SpaceXApi() }
 
-    single<SpaceXSDK> {
-        SpaceXSDK(
-            databaseDriverFactory = AndroidDatabaseDriverFactory(androidContext()),
-            api = get()
-        )
+    single<DatabaseDriverFactory> { AndroidDatabaseDriverFactory(get()) }
+
+    single { AppDatabase(get<DatabaseDriverFactory>().createDriver()) }
+
+    single<ILaunchLocalDataSource> { LaunchLocalDataSource(get()) }
+
+    single<LaunchApi> { LaunchApi() }
+
+    single<ILaunchRepository> {
+        LaunchRepository(get(), get())
     }
 
-    viewModel { RocketLaunchViewModel(sdk = get()) }
+    factory<IGetLaunchesUseCase> {
+        GetLaunchesUseCase(get())
+    }
+
+    viewModel { RocketLaunchViewModel(getLaunchesUseCase = get()) }
 }

@@ -1,4 +1,4 @@
-package com.example.pleasework.cache
+package com.example.pleasework.core.cache
 
 import app.cash.sqldelight.db.SqlDriver
 

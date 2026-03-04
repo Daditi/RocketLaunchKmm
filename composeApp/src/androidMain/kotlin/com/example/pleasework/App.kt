@@ -27,7 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.pleasework.entity.RocketLaunch
+import com.example.pleasework.feature.spaceX.domain.model.RocketLaunch
 import com.example.pleasework.theme.AppTheme
 import com.example.pleasework.theme.app_theme_successful
 import com.example.pleasework.theme.app_theme_unsuccessful
