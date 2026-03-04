@@ -1,4 +1,4 @@
-package com.example.pleasework.theme
+package com.example.pleasework.presentation.theme
 
 import androidx.compose.material3.Typography
 

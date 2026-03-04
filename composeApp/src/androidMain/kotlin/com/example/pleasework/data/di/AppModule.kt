@@ -1,10 +1,13 @@
-package com.example.pleasework
+package com.example.pleasework.data.di
 
-import com.example.pleasework.cache.AndroidDatabaseDriverFactory
+import com.example.pleasework.presentation.spaceX.viewmodel.RocketLaunchViewModel
+import com.example.pleasework.data.cache.AndroidDatabaseDriverFactory
 import com.example.pleasework.cache.AppDatabase
 import com.example.pleasework.core.cache.DatabaseDriverFactory
+import com.example.pleasework.core.network.HttpClientFactory
 import com.example.pleasework.feature.spaceX.data.dao.ILaunchLocalDataSource
 import com.example.pleasework.feature.spaceX.data.dao.LaunchLocalDataSource
+import com.example.pleasework.feature.spaceX.data.network.ILaunchApi
 import com.example.pleasework.feature.spaceX.data.network.LaunchApi
 import com.example.pleasework.feature.spaceX.data.repository.ILaunchRepository
 import com.example.pleasework.feature.spaceX.domain.repository.LaunchRepository
@@ -21,7 +24,9 @@ val appModule = module {
 
     single<ILaunchLocalDataSource> { LaunchLocalDataSource(get()) }
 
-    single<LaunchApi> { LaunchApi() }
+    single { HttpClientFactory.create() }
+
+    single<ILaunchApi> { LaunchApi(get()) }
 
     single<ILaunchRepository> {
         LaunchRepository(get(), get())
